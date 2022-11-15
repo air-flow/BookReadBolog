@@ -39,10 +39,15 @@ def APIShaping(book_data) -> dict:
         "price": item['dcndl:price'],
         "title": item['title'],
         "publisher": item['dc:publisher'],
-        "date": item['dc:date']
+        "date": item['dc:date'],
+        "page": TakeOutPageData(item["dc:extent"]),
+        "language": "日本語"
     }
     return response
 
+
+def TakeOutPageData(data):
+    return data.split(";")[0].strip()
 
 def APIMain(book_name) -> dict:
     result = {"status": False}
@@ -50,8 +55,9 @@ def APIMain(book_name) -> dict:
     if not APIValidationCheck(book_data):
         return result
     result["data"] = APIShaping(book_data)
+    result["status"] = True
     return result
 
 if __name__ == "__main__":
-    result = APIMain("awsではじめるデータレイク ")
+    result = APIMain("awsではじめるデータレイク")
     pprint.pprint(result)
