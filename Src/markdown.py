@@ -24,10 +24,6 @@ def MDMain(data=""):
             "key_name": "publisher"
         },
         {
-            "headline": "## 言語",
-            "key_name": "language"
-        },
-        {
             "headline": "## 単行本",
             "key_name": "price"
         },
@@ -41,12 +37,21 @@ def MDMain(data=""):
         },
     ]
     template_data = MDFileRead(TEMPLATE_FILE_PATH)
-    print(template_data)
-
-
+    test = {
+        'date': '2020.7',
+        'page': '377p',
+        'price': '2800円',
+        'publisher': 'テッキーメディア',
+        'title': 'AWSではじめるデータレイク = Data Lake starting with AWS : '
+        'クラウドによる統合型データリポジトリ構築入門 : クラウドを軸に統合データ基盤を作る'
+    }
+    for i in ADD_LIST:
+        headline, key_name = i.values()
+        template_data = add(template_data, headline, test[key_name])
+    print(*template_data)
 def add(data: list, headline: str, add_data: str):
-    add_index = data.index(headline) + 2
-    data.insert(add_index, add_data)
+    add_index = data.index(headline + "\n") + 2
+    data.insert(add_index, add_data + "\n \n")
     return data
 
 

@@ -40,8 +40,7 @@ def APIShaping(book_data) -> dict:
         "title": item['title'],
         "publisher": item['dc:publisher'],
         "date": item['dc:date'],
-        "page": TakeOutPageData(item["dc:extent"]),
-        "language": "日本語"
+        "page": TakeOutPageData(item["dc:extent"])
     }
     return response
 
