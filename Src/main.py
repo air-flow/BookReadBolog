@@ -9,7 +9,7 @@ def cd():
 
 if __name__ == "__main__":
     cd()
-    SEARCH_BOOK_NAME = "awsではじめるデータレイク"
+    SEARCH_BOOK_NAME = "システム運用アンチパターン"
     # OUTPUT_FILE_PAHT = "output file path"
     data = api.APIMain(SEARCH_BOOK_NAME)
     if data["status"]:
