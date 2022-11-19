@@ -2,7 +2,7 @@ import api
 import pprint
 
 
-def NormalTest(book_name):
+def NormalAPITest(book_name):
     # main.MainCall(book_name)
     pprint.pprint(api.APIMain(book_name))
 
@@ -17,4 +17,4 @@ if __name__ == "__main__":
     ]
     for i in test_data:
         print("-" * 5 + " " + i + " " + "-" * 5)
-        NormalTest(i)
+        NormalAPITest(i)

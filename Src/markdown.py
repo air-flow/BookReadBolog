@@ -94,6 +94,6 @@ def MDBulletPoints(data):
 
 
 if __name__ == "__main__":
-    data = api.APIMain("awsではじめるデータレイク")
+    data = api.APIMain("システム運用アンチパターン")
     # print(data["data"])
-    print(MDMain(data["data"]))
+    print(MDMain(data["data"], "../Doc/test.md"))
