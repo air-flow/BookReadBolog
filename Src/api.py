@@ -7,7 +7,7 @@ import xmltodict
 import json
 
 
-def APICall(book_name, cnt=5) -> dict:
+def APICall(book_name, cnt=1) -> dict:
     result = ""
     URL = "https://iss.ndl.go.jp/api/opensearch"
     params = {
@@ -60,15 +60,16 @@ def APIMain(book_name) -> dict:
     return result
 
 
-def TestIssue1(book_name="エンジニアリングマネージャーのしごと"):
+def TestIssue1(book_name="事業をエンジニアリングする技術者たち ― フルサイクル開発者がつくるCARTAの現場"):
     book_data = APICall(book_name)
+    # book_data = book_data["rss"]["channel"]["item"]
     pprint.pprint(book_data)
 
 
 if __name__ == "__main__":
-    # TestIssue1()
-    result = APIMain("エンジニアリングマネージャーのしごと")
-    pprint.pprint(result)
+    TestIssue1()
+    # result = APIMain("エンジニアリングマネージャーのしごと")
+    # pprint.pprint(result)
 #     {'data': {'date': '2022.8',
 #           'page': '350p',
 #           'price': '3400円',
