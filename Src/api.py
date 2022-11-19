@@ -58,5 +58,5 @@ def APIMain(book_name) -> dict:
     return result
 
 if __name__ == "__main__":
-    result = APIMain("awsではじめるデータレイク")
+    result = APIMain("事業をエンジニアリングする技術者たち")
     pprint.pprint(result)
