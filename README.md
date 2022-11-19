@@ -2,22 +2,21 @@
 
 ## ToDo
 
-- issue clear
+- 値段がないときの処理を行う。
 
-APIの結果がないものがある。
+APIの結果で値段の項目がないものがある。
 現状は以下のエラーを出すようにしている。
 
-ERROR Not Result
-False Book Data Error
+"price": item['dcndl:price'],
+KeyError: 'dcndl:price'
 
 テストデータ
-
+APIMain("エンジニアリングマネージャーのしごと")
 ### plan
 
-- 選択式にする
-- 類似のタイトルを検索する
-- 複数回入力する←人力
+- デフォルト値を入れる
+- 値段があるAPIデータの種別を探す
 
 ### Result
 
-- 複数回入力する
+
