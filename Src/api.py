@@ -12,7 +12,8 @@ def APICall(book_name, cnt=5) -> dict:
     URL = "https://iss.ndl.go.jp/api/opensearch"
     params = {
         'title': book_name,
-        "cnt": cnt}
+        "cnt": cnt,
+        "dpid": "iss-ndl-opac"}
     res = requests.get(URL, params=params)
     if res.status_code != 200:
         print("ERROR HTTP GET")
