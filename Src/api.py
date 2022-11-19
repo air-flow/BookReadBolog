@@ -39,7 +39,7 @@ def APIShaping(book_data) -> dict:
     response = {
         "price": item['dcndl:price'],
         "title": item['title'],
-        "publisher": item['dc:publisher'],
+        "publisher": CheckType(item['dc:publisher']),
         "date": item['dc:date'],
         "page": TakeOutPageData(item["dc:extent"])
     }
@@ -49,6 +49,9 @@ def APIShaping(book_data) -> dict:
 def TakeOutPageData(data):
     return data.split(";")[0].strip()
 
+
+def CheckType(data):
+    return data if isinstance(data, str) else data[0]
 
 def APIMain(book_name) -> dict:
     result = {"status": False}
