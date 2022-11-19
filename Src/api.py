@@ -12,7 +12,8 @@ def APICall(book_name, cnt=5) -> dict:
     URL = "https://iss.ndl.go.jp/api/opensearch"
     params = {
         'title': book_name,
-        "cnt": cnt}
+        "cnt": cnt,
+        "dpid": "iss-ndl-opac"}
     res = requests.get(URL, params=params)
     if res.status_code != 200:
         print("ERROR HTTP GET")
@@ -27,14 +28,14 @@ def APIValidationCheck(data) -> bool:
     if len(data) == 0:
         print(ERROR_MESSAGE)
         return False
-    if int(data["rss"]["channel"]["openSearch:totalResults"]) <= 1:
+    if int(data["rss"]["channel"]["openSearch:totalResults"]) <= 0:
         print(ERROR_MESSAGE)
         return False
     return True
 
 
 def APIShaping(book_data) -> dict:
-    item = book_data["rss"]["channel"]["item"][1]
+    item = book_data["rss"]["channel"]["item"]
     response = {
         "price": item['dcndl:price'],
         "title": item['title'],
@@ -48,6 +49,7 @@ def APIShaping(book_data) -> dict:
 def TakeOutPageData(data):
     return data.split(";")[0].strip()
 
+
 def APIMain(book_name) -> dict:
     result = {"status": False}
     book_data = APICall(book_name)
@@ -57,6 +59,19 @@ def APIMain(book_name) -> dict:
     result["status"] = True
     return result
 
+
+def TestIssue1(book_name="エンジニアリングマネージャーのしごと"):
+    book_data = APICall(book_name)
+    pprint.pprint(book_data)
+
+
 if __name__ == "__main__":
-    result = APIMain("事業をエンジニアリングする技術者たち")
+    # TestIssue1()
+    result = APIMain("エンジニアリングマネージャーのしごと")
     pprint.pprint(result)
+#     {'data': {'date': '2022.8',
+#           'page': '350p',
+#           'price': '3400円',
+#           'publisher': ['オライリー・ジャパン', 'オーム社 (発売)'],
+#           'title': 'エンジニアリングマネージャーのしごと : チームが必要とするマネージャーになる方法'},
+#  'status': True}
